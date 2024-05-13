@@ -9,7 +9,7 @@
 [[`arXiv`](https://arxiv.org/abs/xx)] [[`BibTeX`](#citation)]
 
 ## 🔥 Updates
-* **2024/02/04**: Pre-trained models and codes of DECO are released both in [Pytorch](https://github.com/xinghaochen/SqueezeTime) and [Mindspore](https://github.com/mindspore-lab/models/tree/master/research/huawei-noah/SqueezeTime).
+* **2024/05/13**: Pre-trained models and codes of SqueezeTime are released both in [Pytorch](https://github.com/xinghaochen/SqueezeTime) and [Mindspore](https://github.com/mindspore-lab/models/tree/master/research/huawei-noah/SqueezeTime).
 
 ## 📸 Overview
 This is an official pytorch implementation of our paper "[**No Time to Waste: Squeeze Time into Channel for Mobile Video Understanding**](https://)". In this paper, we propose to squeeze the time axis of a video sequence into the channel dimension and present a lightweight video recognition network, term as **SqueezeTime**, for mobile video understanding. To enhance the temporal modeling capability of the model, we design a Channel-Time Learning (CTL) Block to capture temporal dynamics of the sequence. This module has two complementary branches, in which one branch is for temporal importance learning and another branch with temporal position restoring capability is to enhance inter-temporal object modeling ability. The proposed SqueezeTime is much lightweight and fast with high accuracies for mobile video understanding. Extensive experiments on various benchmarks, i.e., Kinetics400, Kinetics600, SomethingSomethingV2, HMDB51, AVA2.1, and THUMOS14, demonstrate the superiority of our model. For example, our SqueezeTime achieves **+1.2%** accuracy and **+80%** GPU throughput gain on Kinetics400 than prior methods.
