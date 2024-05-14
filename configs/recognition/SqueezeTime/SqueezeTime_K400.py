@@ -48,6 +48,7 @@ train_pipeline = [
     dict(type='FormatShape', input_format='NCTHW'),
     dict(type='PackActionInputs')
 ]
+
 val_pipeline = [
     dict(type='DecordInit', **file_client_args),
     dict(
@@ -62,6 +63,7 @@ val_pipeline = [
     dict(type='FormatShape', input_format='NCTHW'),
     dict(type='PackActionInputs')
 ]
+
 test_pipeline = [
     dict(type='DecordInit', **file_client_args),
     dict(
@@ -99,6 +101,7 @@ val_dataloader = dict(
         data_prefix=dict(video=data_root_val),
         pipeline=val_pipeline,
         test_mode=True))
+
 test_dataloader = dict(
     batch_size=1,
     num_workers=8,
