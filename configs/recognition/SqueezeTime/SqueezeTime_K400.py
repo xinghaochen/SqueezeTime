@@ -19,6 +19,7 @@ model = dict(
         mean=[123.675, 116.28, 103.53],
         std=[58.395, 57.12, 57.375],
         format_shape='NCTHW'))
+
 # dataset settings
 dataset_type = 'VideoDataset'
 data_root = 'data/kinetics400/kinetics_videos/train_256'
