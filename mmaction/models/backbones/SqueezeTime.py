@@ -98,8 +98,6 @@ class Conv2d(nn.Module):
         
         return x
 
-
-
 def conv3x3x3(in_planes, out_planes, stride=1, pos_dim=7):
 
     return Conv2d(in_planes,
