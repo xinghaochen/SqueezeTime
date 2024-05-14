@@ -25,7 +25,8 @@ model = dict(
         #         dict(type='CutmixBlending', alpha=1, num_classes=51)
         #     ]),
         format_shape='NCTHW'))
-# sthv2_flip_label_map = {86: 87, 87: 86, 93: 94, 94: 93, 166: 167, 167: 166}
+
+
 # dataset settings
 dataset_type = 'VideoDataset'
 data_root = 'data/hmdb51_org'
@@ -52,19 +53,12 @@ train_pipeline = [
         num_fixed_crops=13),
     dict(type='Resize', scale=(224, 224), keep_ratio=False),
     dict(type='Flip', flip_ratio=0.5),
-    # dict(type='ImgAug', transforms=[
-    #             dict(type='Rotate', rotate=(-15, 15))
-    #         ]),
-    # dict(
-    #     type='PytorchVideoWrapper',
-    #     op='RandAugment',
-    #     magnitude=7,
-    #     num_layers=4),
     dict(type='ColorJitter'),
     dict(type='RandomErasing', erase_prob=0.25, mode='rand'),
     dict(type='FormatShape', input_format='NCTHW'),
     dict(type='PackActionInputs')
 ]
+
 val_pipeline = [
     dict(type='DecordInit', **file_client_args),
     # dict(type='UniformSample', clip_len=16, num_clips=2, test_mode=True),
@@ -75,6 +69,7 @@ val_pipeline = [
     dict(type='FormatShape', input_format='NCTHW'),
     dict(type='PackActionInputs')
 ]
+
 test_pipeline = [
     dict(type='DecordInit', **file_client_args),
     # dict(type='UniformSample', clip_len=16, num_clips=2, test_mode=True),
@@ -108,6 +103,7 @@ val_dataloader = dict(
         data_prefix=dict(video=data_root_val),
         pipeline=val_pipeline,
         test_mode=True))
+
 test_dataloader = dict(
     batch_size=16,
     num_workers=8,
@@ -161,26 +157,6 @@ val_cfg = dict(type='ValLoop')
 test_cfg = dict(type='TestLoop')
 
 base_lr=0.02
-#0.0045 top1: 62.42 88.82
-#lr 0.01 wd:0.0005 lr 6,16, top1 63.07
-#lr 0.015 wd: 0.005 lr 12,30 backbone lrmulti 0.1 top1 63.27/63.73 top5 89.41/89.22
-# param_scheduler = [
-#     dict(
-#         type='LinearLR',
-#         start_factor=1 / 10,
-#         by_epoch=True,
-#         begin=0,
-#         end=2.5,
-#         convert_to_iter_based=True),
-#     dict(
-#         type='CosineAnnealingLR',
-#         T_max=27.5,
-#         eta_min=base_lr / 100,
-#         by_epoch=True,
-#         begin=2.5,
-#         end=30,
-#         convert_to_iter_based=True)
-# ]
 param_scheduler = [
     # dict(type='LinearLR', start_factor=0.1, by_epoch=True, begin=0, end=5),
     dict(
@@ -191,6 +167,7 @@ param_scheduler = [
         milestones=[12,24],
         gamma=0.1)
 ]
+
 optim_wrapper = dict(
     # type='AmpOptimWrapper',
     optimizer=dict(type='SGD', lr=base_lr, momentum=0.9, weight_decay=0.008),
@@ -199,4 +176,3 @@ optim_wrapper = dict(
             'backbone': dict(lr_mult=0.1,decay_mult=1.0),
         }),
     clip_grad=dict(max_norm=40, norm_type=2))
-#top1: 65.56, top5: 90.26, 12,24,lr 0.015, wd 0.008
