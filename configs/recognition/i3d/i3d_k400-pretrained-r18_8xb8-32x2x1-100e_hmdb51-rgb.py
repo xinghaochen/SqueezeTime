@@ -2,6 +2,7 @@ _base_ = [
  '../../_base_/schedules/sgd_100e.py',
     '../../_base_/default_runtime.py'
 ]
+
 model = dict(
     type='Recognizer3D',
     backbone=dict(
@@ -29,12 +30,11 @@ model = dict(
         mean=[123.675, 116.28, 103.53],
         std=[58.395, 57.12, 57.375],
         format_shape='NCTHW'))
+
 # dataset settings
 dataset_type = 'VideoDataset'
-data_root = '/home/ma-user/work/data/hmdb51_org'
-data_root_val = '/home/ma-user/work/data/hmdb51_org'
-# data_root = '/home/ma-user/modelarts/inputs/hmdb51_org'
-# data_root_val = '/home/ma-user/modelarts/inputs/hmdb51_org'
+data_root = 'data/hmdb51_org'
+data_root_val = 'data/hmdb51_org'
 ann_file_train = 'data/hmdb51/hmdb51_train_split_1_videos.txt'
 ann_file_val = 'data/hmdb51/hmdb51_val_split_1_videos.txt'
 ann_file_test = 'data/hmdb51/hmdb51_val_split_1_videos.txt'
