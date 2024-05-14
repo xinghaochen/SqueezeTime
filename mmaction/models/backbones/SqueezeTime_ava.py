@@ -21,11 +21,13 @@ class SpatialConv(nn.Module):
         super(SpatialConv, self).__init__()
         
         self.short_conv = nn.Conv2d(dim_in, dim_out, kernel_size=3, stride=1, padding=1, groups=1)
+        
         self.glo_conv = nn.Sequential(nn.Conv2d(dim_in, 16, kernel_size=3, stride=1, padding=1, groups=1), 
                                     nn.BatchNorm2d(16), nn.ReLU(inplace=True), 
                                     nn.Conv2d(16, 16, kernel_size=7, stride=1, padding=3), 
                                     nn.BatchNorm2d(16), nn.ReLU(inplace=True), 
                                     nn.Conv2d(16, dim_out, kernel_size=3, stride=1, padding=1, groups=1), nn.Sigmoid())
+        
         self.pos_embed = nn.Parameter(torch.zeros(1, 16, pos_dim,pos_dim))
         
         nn.init.kaiming_normal_(self.pos_embed, mode='fan_out', nonlinearity='relu')
@@ -33,6 +35,7 @@ class SpatialConv(nn.Module):
     def forward(self, x, param):
         
         x_short = self.short_conv(x)
+        
         x = x*param
         
         for i in range(len(self.glo_conv)):
@@ -70,6 +73,7 @@ class Conv2d(nn.Module):
         super(Conv2d, self).__init__()
         
         self.stride = stride
+        
         self.param_conv = nn.Sequential(
             nn.AdaptiveAvgPool2d((1, 1)),
             nn.Conv2d(in_channels,
@@ -84,6 +88,7 @@ class Conv2d(nn.Module):
             nn.Sigmoid())
         
         self.temporal_conv = nn.Conv2d(in_channels=in_channels, out_channels=out_channels, kernel_size=kernel_size, stride=1, padding=padding, dilation=dilation, groups=groups, bias=bias, padding_mode=padding_mode)
+       
         self.spatial_conv = SpatialConv(dim_in=in_channels, dim_out=out_channels, pos_dim=pos_dim)
     
     def forward(self, x):
@@ -168,12 +173,17 @@ class Bottleneck(nn.Module):
 
         self.conv1 = conv1x1x1(in_planes, planes)
         self.bn1 = nn.BatchNorm2d(planes)
+        
         self.conv2 = conv3x3x3(planes, planes, pos_dim=pos_dim)
         self.bn2 = nn.BatchNorm2d(planes)
+        
         self.conv3 = conv1x1x1(planes, planes * self.expansion)
         self.bn3 = nn.BatchNorm2d(planes * self.expansion)
+        
         self.relu = nn.ReLU(inplace=True)
+        
         self.shortcut_conv = shortcut_conv
+        
         self.stride = stride
         
         if stride !=1:
@@ -356,16 +366,22 @@ def generate_model(model_depth, **kwargs):
 
     if model_depth == 10:
         model = ResNet(BasicBlock, [1, 1, 1, 1], get_inplanes(), **kwargs)
+        
     elif model_depth == 18:
         model = ResNet(BasicBlock, [2, 2, 2, 2], get_inplanes(), **kwargs)
+        
     elif model_depth == 34:
         model = ResNet(BasicBlock, [3, 4, 6, 3], get_inplanes(), **kwargs)
+        
     elif model_depth == 50:
         model = ResNet(Bottleneck, [3, 4, 6, 3], get_inplanes(), **kwargs)
+        
     elif model_depth == 101:
         model = ResNet(Bottleneck, [3, 4, 23, 3], get_inplanes(), **kwargs)
+        
     elif model_depth == 152:
         model = ResNet(Bottleneck, [3, 8, 36, 3], get_inplanes(), **kwargs)
+        
     elif model_depth == 200:
         model = ResNet(Bottleneck, [3, 24, 36, 3], get_inplanes(), **kwargs)
 
@@ -374,25 +390,26 @@ def generate_model(model_depth, **kwargs):
 def load_ckpts(model,load_path):
     
     pretrain = torch.load(load_path, map_location='cpu')
-    adapted_weights={}
+    adapted_weights = {}
     
     if 'state_dict' in pretrain.keys():
-        pretrain=pretrain['state_dict']
+        pretrain = pretrain['state_dict']
+        
     elif 'model' in pretrain.keys():
-        pretrain=pretrain['model']
+        pretrain = pretrain['model']
     
     if not hasattr(model, 'module'):
         for name,module in model.named_parameters():
             
             if name in pretrain.keys() and pretrain[name].data.shape == module.data.shape:
-                adapted_weights[name]=pretrain[name].data
+                adapted_weights[name] = pretrain[name].data
                 
         model.load_state_dict(adapted_weights,strict=False)
     else:
         for name,module in model.module.named_parameters():
             
             if name in pretrain.keys() and pretrain[name].data.shape == module.data.shape:
-                adapted_weights[name]=pretrain[name].data
+                adapted_weights[name] = pretrain[name].data
         
         model.module.load_state_dict(adapted_weights,strict=False)
     
@@ -446,7 +463,7 @@ if __name__ == '__main__':
     for i in range(10):
         model(tensor)
         
-    start=time.time()
+    start = time.time()
     for i in range(100):
         model(tensor)
         
@@ -477,13 +494,13 @@ if __name__ == '__main__':
     print("Max allocated memory:", torch.cuda.max_memory_allocated()/1e9)
 
     # Calculate CPU forward time
-    model=model.cpu()
+    model = model.cpu()
     tensor = torch.rand(1, 3, t, h, h)
     
     for i in range(10):
         model(tensor)
         
-    start=time.time()
+    start = time.time()
     for i in range(10):
         model(tensor)
     
