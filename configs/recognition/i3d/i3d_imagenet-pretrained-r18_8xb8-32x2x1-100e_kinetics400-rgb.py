@@ -5,10 +5,8 @@ _base_ = [
 
 # dataset settings
 dataset_type = 'VideoDataset'
-# data_root = '/home/ma-user/work/data/kinetics400/train_256'
-# data_root_val = '/home/ma-user/work/data/kinetics400/val_256'
-data_root = '/home/ma-user/modelarts/inputs/kinetics_videos/train_256'
-data_root_val = '/home/ma-user/modelarts/inputs/kinetics_videos/val_256'
+data_root = 'data/kinetics400/train_256'
+data_root_val = 'data/kinetics400/val_256'
 ann_file_train = 'data/kinetics400/kinetics400_train_list_videos.txt'
 ann_file_val = 'data/kinetics400/kinetics400_val_list_videos.txt'
 ann_file_test = 'data/kinetics400/kinetics400_val_list_videos.txt'
