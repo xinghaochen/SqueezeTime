@@ -1,6 +1,7 @@
 _base_ = [ '../../_base_/schedules/sgd_100e.py',
     '../../_base_/default_runtime.py'
 ]
+
 # model settings
 model = dict(
     type='Recognizer3D',
@@ -29,12 +30,11 @@ model = dict(
         mean=[123.675, 116.28, 103.53],
         std=[58.395, 57.12, 57.375],
         format_shape='NCTHW'))
+
 # dataset settings
 dataset_type = 'VideoDataset'
-# data_root = '/home/ma-user/work/data/k600/Kinetics600/videos'
-# data_root_val = '/home/ma-user/work/data/k600/Kinetics600/videos'
-data_root = '/home/ma-user/modelarts/inputs/Kinetics600/videos'
-data_root_val = '/home/ma-user/modelarts/inputs/Kinetics600/videos'
+data_root = 'data/Kinetics600/videos'
+data_root_val = 'data/Kinetics600/videos'
 ann_file_train = 'data/kinetics600/kinetics600_train_list_videos.txt'
 ann_file_val = 'data/kinetics600/kinetics600_val_list_videos.txt'
 ann_file_test = 'data/kinetics600/kinetics600_val_list_videos.txt'
@@ -56,6 +56,7 @@ train_pipeline = [
     dict(type='FormatShape', input_format='NCTHW'),
     dict(type='PackActionInputs')
 ]
+
 val_pipeline = [
     dict(type='DecordInit', **file_client_args),
     dict(
@@ -70,6 +71,7 @@ val_pipeline = [
     dict(type='FormatShape', input_format='NCTHW'),
     dict(type='PackActionInputs')
 ]
+
 test_pipeline = [
     dict(type='DecordInit', **file_client_args),
     dict(
@@ -107,6 +109,7 @@ val_dataloader = dict(
         data_prefix=dict(video=data_root_val),
         pipeline=val_pipeline,
         test_mode=True))
+
 test_dataloader = dict(
     batch_size=1,
     num_workers=8,
