@@ -6,7 +6,7 @@
 
 *arXiv 2024* 
 
-[[`arXiv`](https://arxiv.org/abs/xx)] [[`BibTeX`](#citation)]
+[[`arXiv`]([https://arxiv.org/abs/xx](https://arxiv.org/pdf/2405.08344))] [[`BibTeX`](#citation)]
 
 ## 🔥 Updates
 * **2024/05/13**: Pre-trained models and codes of SqueezeTime are released both in [Pytorch](https://github.com/xinghaochen/SqueezeTime) and [Mindspore](https://github.com/mindspore-lab/models/tree/master/research/huawei-noah/SqueezeTime).
@@ -126,7 +126,7 @@ If you find SqueezeTime useful in your research or applications, please consider
 @article{zhai2024SqueezeTime,
   title={No Time to Waste: Squeeze Time into Channel for Mobile Video Understanding},
   author={Zhai, Yingjie and Li, Wenshuo and Tang, Yehui and Chen, Xinghao and Wang, Yunhe},
-  journal={arXiv preprint arXiv:****.****},
+  journal={arXiv preprint arXiv:2405.08344},
   year={2024}
 }
 ```
