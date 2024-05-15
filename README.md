@@ -6,7 +6,7 @@
 
 *arXiv 2024* 
 
-[[`arXiv`]([https://arxiv.org/abs/xx](https://arxiv.org/pdf/2405.08344))] [[`BibTeX`](#citation)]
+[`arXiv`]([https://arxiv.org/abs/xx](https://arxiv.org/pdf/2405.08344)) [[`BibTeX`](#citation)]
 
 ## 🔥 Updates
 * **2024/05/13**: Pre-trained models and codes of SqueezeTime are released both in [Pytorch](https://github.com/xinghaochen/SqueezeTime) and [Mindspore](https://github.com/mindspore-lab/models/tree/master/research/huawei-noah/SqueezeTime).
