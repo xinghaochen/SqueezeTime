@@ -98,11 +98,13 @@ Besides, we also provide the configs of other models trained in our paper, pleas
 
 #### Model Checkpoints
 
-| Dataset  | Ckpts | Dataset | Ckpts
-|----------|-------|---------|------|
-|ImageNet1K| [Download](https://)|K400   | [Download](https://) |
-|K600      | [Download](https://)| HMDB51| [Download](https://) |
-|AVA2.1     | [Download](https://)| |  |
+| Dataset  | Checkpoints |
+|----------|-------|
+|ImageNet1K| [Download](https://github.com/xinghaochen/SqueezeTime/releases/download/ckpts/SqueezeTime_in1k_pretrain.pth)|
+|K400   | [Download](https://github.com/xinghaochen/SqueezeTime/releases/download/ckpts/SqueezeTime_K400_71.64.pth) |
+|K600      | [Download](https://github.com/xinghaochen/SqueezeTime/releases/download/ckpts/SqueezeTime_K600_76.06.pth)| 
+|HMDB51| [Download](https://github.com/xinghaochen/SqueezeTime/releases/download/ckpts/SqueezeTime_HMDB51_65.56.pth) |
+|AVA2.1     | [Download](https://github.com/xinghaochen/SqueezeTime/releases/download/ckpts/SqueezeTime-AVA2.1.pth)| 
 
 ## 4️⃣ Evaluation
 The following results are on the Kinetics400 dataset. Please see the paper for the results on other datasets.
