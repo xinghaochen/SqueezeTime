@@ -83,7 +83,11 @@ All dataset are organized using mmaction2 format. Please organize the `data` dir
 
 All config files are in 'configs/recognition/' and 'configs/detection/'. The configs for train and test K400, K600, HMDB51, sthv2, and AVA2.1 datasets are in 
 ```
-"configs/recognition/SqueezeTime/SqueezeTime_K400.py", "configs/recognition/SqueezeTime/SqueezeTime_K600.py", "configs/recognition/SqueezeTime/SqueezeTime_HMDB51.py", "configs/recognition/SqueezeTime/SqueezeTime_sthv2.py", "configs/detection/SqueezeTime_AVA2.1.py".
+"configs/recognition/SqueezeTime/SqueezeTime_K400.py",
+"configs/recognition/SqueezeTime/SqueezeTime_K600.py",
+"configs/recognition/SqueezeTime/SqueezeTime_HMDB51.py",
+"configs/recognition/SqueezeTime/SqueezeTime_sthv2.py",
+"configs/detection/SqueezeTime_AVA2.1.py".
 ```
 
 Take the Kinectics400 dataset for an example:
