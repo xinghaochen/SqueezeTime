@@ -82,7 +82,6 @@ All config files are in 'configs/recognition/' and 'configs/detection/'. The con
 "configs/recognition/SqueezeTime/SqueezeTime_K400.py",
 "configs/recognition/SqueezeTime/SqueezeTime_K600.py",
 "configs/recognition/SqueezeTime/SqueezeTime_HMDB51.py",
-"configs/recognition/SqueezeTime/SqueezeTime_sthv2.py",
 "configs/detection/SqueezeTime_AVA2.1.py".
 ```
 
