@@ -148,9 +148,8 @@ vis_backends = [dict(type='LocalVisBackend')]
 visualizer = dict(type='ActionVisualizer', vis_backends=vis_backends)
 
 log_level = 'INFO'
-load_from = 'ckpts/res2d_v6_19_w1_27_3_fast_v2_10_poswh_sum224_true_epoch_100_71.64.pth'
+load_from = None
 resume = False
-
 train_cfg = dict(
     type='EpochBasedTrainLoop', max_epochs=50, val_begin=1, val_interval=1)
 val_cfg = dict(type='ValLoop')
