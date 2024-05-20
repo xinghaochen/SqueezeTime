@@ -68,10 +68,6 @@ All dataset are organized using mmaction2 format. Please organize the `data` dir
         │   ├── hmdb51_val_split_2_videos.txt
         │   ├── hmdb51_val_split_3_videos.txt
         │   └── videos/
-        ├── sthv2
-        │   ├── sthv2_train_list_videos.txt
-        │   ├── sthv2_val_list_videos.txt
-        │   └── videos/
         └── ava
             ├── ava_train_v2.1.csv
             ├── ava_val_v2.1.csv
